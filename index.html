@@ -38,7 +38,23 @@
           />
         </a>
 
-        <nav class="main-nav" aria-label="Primary navigation">
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+        >
+          <span class="menu-toggle-line" aria-hidden="true"></span>
+          <span class="menu-toggle-line" aria-hidden="true"></span>
+          <span class="menu-toggle-line" aria-hidden="true"></span>
+          <span class="visually-hidden">Open navigation menu</span>
+        </button>
+
+        <nav
+          id="primary-navigation"
+          class="main-nav"
+          aria-label="Primary navigation"
+        >
           <ul class="nav-list">
             <li><a href="#about">ABOUT US</a></li>
             <li><a href="#menu">MENU</a></li>
@@ -55,7 +71,7 @@
           <div class="hero-content">
             <h1 id="hero-heading">Experience Coffee Like Never Before</h1>
             <p>
-              We craft more than beverages, we curate memories, one flavourful
+              We craft more than beverages; we curate memories, one flavourful
               moment at a time. Embrace the aroma and let every visit be a
               chapter in your coffee story.
             </p>
@@ -109,8 +125,8 @@
             />
 
             <img
-              src="images/coffee-shop.jpeg"
-              alt="People enjoying coffee inside the coffee shop"
+              src="images/smiling-employee.jpeg"
+              alt="Smiling barista preparing a coffee drink"
             />
           </div>
         </div>
@@ -244,7 +260,7 @@
 
               <p class="testimonial-text">
                 “I always make a point to visit My Coffee House when in Ottawa.
-                Delicious coffee and friendly service!”
+                Delicious coffee and friendly service.”
               </p>
               <p class="testimonial-author">Jane D., Toronto</p>
             </article>
@@ -277,5 +293,23 @@
         <p>&copy; My Coffee House 2026</p>
       </div>
     </footer>
+
+    <script>
+      const menuToggle = document.querySelector(".menu-toggle");
+      const mainNav = document.querySelector(".main-nav");
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+        menuToggle.setAttribute("aria-expanded", String(!isOpen));
+        mainNav.classList.toggle("is-open", !isOpen);
+      });
+
+      mainNav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          menuToggle.setAttribute("aria-expanded", "false");
+          mainNav.classList.remove("is-open");
+        });
+      });
+    </script>
   </body>
 </html>
